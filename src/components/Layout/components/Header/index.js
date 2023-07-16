@@ -10,9 +10,11 @@ import {
     faSignIn,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/';
+import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
 
+import routesConfig from '~/config/routes';
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
@@ -39,6 +41,21 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'vi',
                     title: 'Tiếng Việt',
+                    children: {
+                        title: 'Languague',
+                        data: [
+                            {
+                                type: 'language',
+                                code: 'en',
+                                title: 'English2',
+                            },
+                            {
+                                type: 'language',
+                                code: 'vi',
+                                title: 'Tiếng Việt1',
+                            },
+                        ],
+                    },
                 },
             ],
         },
@@ -95,7 +112,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="Tiktok"></img>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Tiktok"></img>
+                </Link>
 
                 <Search />
 
@@ -107,12 +126,12 @@ function Header() {
                                     <UploadIcon />
                                 </button>
                             </Tippy>
-                            <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <MessageIcon />
                                 </button>
                             </Tippy>
-                            <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
                                     <span className={cx('badge')}>12</span>
